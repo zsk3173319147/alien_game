@@ -1,4 +1,7 @@
 
+import pygame
+
+
 class Settings():
     """存储《外星人入侵》这个游戏的所有设置的类"""
 
@@ -7,6 +10,7 @@ class Settings():
         self.screen_heigth = 800
         self.Screen_caption = 'Alien Invasion'
         self.bg_color = (230, 230, 230)
+        self.bg_image=pygame.image.load('resourses\\space.png')
         #飞船的设置：飞行速度
         self.ship_speed_factor=1.5
         self.ship_limit=3

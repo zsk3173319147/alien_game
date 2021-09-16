@@ -65,6 +65,7 @@ def update_screen(ai_settings, screen,stats, ship, bullets, aliens,play_button):
     """更新屏幕上的图像，并切换到新屏幕"""
     # 每次循环都重绘屏幕
     screen.fill(ai_settings.bg_color)
+    #screen.blit(ai_settings.bg_image,(0,0))
     # 在飞船后面重绘所有子弹
     for bullet in bullets:
         bullet.draw_bullet()
@@ -147,8 +148,13 @@ def create_fleet(ai_settings, screen, aliens, ship):
     random_rows=randint(0,number_rows)
     random_number_alien_x=randint(0,number_alien_x)
     for row_number in range(random_rows):
+        random_number1=randint(0,1)
+        if random_number1==1:
+            continue
         for alien_number in range(random_number_alien_x):
-            create_alien(ai_settings, screen, aliens, alien_number, row_number)
+            random_number2=randint(0,1)
+            if random_number2==1:
+                create_alien(ai_settings, screen, aliens, alien_number, row_number)
 
 
 def change_fleet_direction(ai_settings, aliens):
