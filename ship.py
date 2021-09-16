@@ -7,7 +7,7 @@ class Ship():
         self.screen = screen
         self.ai_settings = ai_settings
         # 加载图像并获取其外接矩形
-        self.image = pygame.image.load('images\\ship.bmp')
+        self.image = pygame.image.load('resourses\\ship.bmp')
         self.rect = self.image.get_rect()
         self.screen_rect = screen.get_rect()
         # 将新飞船放在屏幕底部的正中央

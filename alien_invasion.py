@@ -27,8 +27,13 @@ def run_game():
     # 创建一个外星人编组
     aliens = Group()
     gf.create_fleet(ai_settings, screen, aliens, ship)
+    # 加载音乐
+    pygame.mixer.init()
+    pygame.mixer.music.load(r'resourses\\bg.mp3')
     # 开始游戏的主循环
     while True:
+        if pygame.mixer.music.get_busy() == False:
+            pygame.mixer.music.play(-1)
         # 监视键盘和鼠标事件
         gf.check_events(ai_settings, screen,stats,play_button, ship, bullets,aliens)
         if  stats.game_active:
