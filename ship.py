@@ -39,8 +39,9 @@ class Ship():
 
     def ship_center(self):
         """让飞船位置居中"""
-        self.center=self.screen_rect.centerx
-        self.bottom=self.screen_rect.bottom
+        self.center = self.screen_rect.centerx
+        self.bottom = self.screen_rect.bottom
+
     def blitme(self):
         """在指定位置绘制飞船"""
         self.screen.blit(self.image, self.rect)

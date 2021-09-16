@@ -7,6 +7,7 @@ import game_functions as gf
 from game_stats import GameStats
 from button import BUtton
 
+
 def run_game():
     # 初始化游戏并创建一个对象
     pygame.init()
@@ -17,9 +18,9 @@ def run_game():
     # 设置背景色
     # bg_color = ai_settings.bg_color
     # 创建一个play按钮
-    play_button=BUtton(ai_settings,screen,"Play")
+    play_button = BUtton(ai_settings, screen, "Play")
     # 创建一个用于储存游戏统计信息的实例
-    stats=GameStats(ai_settings)
+    stats = GameStats(ai_settings)
     # 创建一个飞船
     ship = Ship(ai_settings, screen)
     # 创建一个用于存储子弹的编组
@@ -35,23 +36,25 @@ def run_game():
         if pygame.mixer.music.get_busy() == False:
             pygame.mixer.music.play(-1)
         # 监视键盘和鼠标事件
-        gf.check_events(ai_settings, screen,stats,play_button, ship, bullets,aliens)
-        if  stats.game_active:
+        gf.check_events(ai_settings, screen, stats,
+                        play_button, ship, bullets, aliens)
+        if stats.game_active:
             ship.update()
         # bullets.update()
         #  删除已经消失的子弹
         # for bullet in bullets.copy():
         #     if bullet.rect.bottom <= 0:
         #         bullets.remove(bullet)
-            gf.update_bullets(ai_settings,screen,ship,bullets,aliens)
+            gf.update_bullets(ai_settings, screen, ship, bullets, aliens)
         # print(len(bullets)) 测试子弹编组bullets中还有几颗子弹
         # 每次循环都重绘屏幕
         # screen.fill(ai_settings.bg_color)
         # ship.blitme()
         # 让最近绘制的屏幕可见
         # pygame.display.flip()
-            gf.update_aliens(ai_settings,ship,screen,stats,aliens,bullets)
-        gf.update_screen(ai_settings,screen,stats, ship, bullets, aliens,play_button)
+            gf.update_aliens(ai_settings, ship, screen, stats, aliens, bullets)
+        gf.update_screen(ai_settings, screen, stats, ship,
+                         bullets, aliens, play_button)
 
 
 run_game()
