@@ -4,7 +4,7 @@ from pygame.constants import K_DOWN, K_LEFT, K_RIGHT, K_UP, K_a, K_d, K_s, K_w
 from bullet import Bullet
 from alien import Alien
 from time import sleep
-
+from random import randint
 
 def check_keydown_events(event, ai_settings, screen, ship, bullets):
     """响应按键"""
@@ -144,8 +144,10 @@ def create_fleet(ai_settings, screen, aliens, ship):
     number_alien_x = get_number_alien_x(ai_settings, alien.rect.width)
     number_rows = get_number_rows(
         ai_settings, ship.rect.height, alien.rect.height)
-    for row_number in range(number_rows):
-        for alien_number in range(number_alien_x):
+    random_rows=randint(0,number_rows)
+    random_number_alien_x=randint(0,number_alien_x)
+    for row_number in range(random_rows):
+        for alien_number in range(random_number_alien_x):
             create_alien(ai_settings, screen, aliens, alien_number, row_number)
 
 
