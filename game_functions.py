@@ -55,7 +55,7 @@ def check_play_button(ai_settings, stats, screen, ship, aliens, bullets, play_bu
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
         # 重置游戏的统计信息
-        ai_settings.initialize_dynamic_settings()
+        ai_settings.initilalize_dynamic_settings()
         stats.reset_stats()
         stats.game_active = True
         # 清空外星人和子弹列表
@@ -64,6 +64,13 @@ def check_play_button(ai_settings, stats, screen, ship, aliens, bullets, play_bu
         # 创建一群新的外星人 并让飞船居中
         create_fleet(ai_settings, screen, aliens, ship)
         ship.ship_center()
+
+
+def update_screen_menu(ai_settings,screen,stats,play_button):
+    screen.blit(ai_settings.bg_image, (0, 0))
+    if not stats.game_active:
+        play_button.draw_button()
+    pygame.display.flip()
 
 
 def update_screen(ai_settings, screen, stats, ship, bullets, aliens, play_button):

@@ -53,8 +53,9 @@ def run_game():
         # 让最近绘制的屏幕可见
         # pygame.display.flip()
             gf.update_aliens(ai_settings, ship, screen, stats, aliens, bullets)
-        gf.update_screen(ai_settings, screen, stats, ship,
+            gf.update_screen(ai_settings, screen, stats, ship,
                          bullets, aliens, play_button)
 
-
+        else:
+            gf.update_screen_menu(ai_settings,screen,stats,play_button)
 run_game()
