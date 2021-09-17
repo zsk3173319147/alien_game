@@ -55,6 +55,7 @@ def check_play_button(ai_settings, stats, screen, ship, aliens, bullets, play_bu
     button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
         # 重置游戏的统计信息
+        ai_settings.initialize_dynamic_settings()
         stats.reset_stats()
         stats.game_active = True
         # 清空外星人和子弹列表
@@ -97,8 +98,9 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
     """检查是否有子弹击中了外星人 是的话就删除子弹和相应的外星人"""
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
     if len(aliens) == 0:
-        # 删除现有子弹并进建一批外星人
+        # 删除现有子弹,加快游戏节奏并进建一批外星人
         bullets.empty()
+        ai_settings.increase_speed()
         create_fleet(ai_settings, screen, aliens, ship)
 
 
