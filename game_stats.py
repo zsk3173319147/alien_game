@@ -6,6 +6,7 @@ class GameStats():
         self.ai_settings = ai_settings
         # 让游戏一开始处于非活动状态
         self.game_active = False
+        self.game_start=False
         self.reset_stats()
 
     def reset_stats(self):

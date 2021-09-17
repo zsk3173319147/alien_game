@@ -18,7 +18,9 @@ def run_game():
     # 设置背景色
     # bg_color = ai_settings.bg_color
     # 创建一个play按钮
-    play_button = BUtton(ai_settings, screen, "Play")
+    play_button = BUtton(250, screen, "Play")
+    replay_button=BUtton(600,screen,"Play Again ")
+    quit_button=BUtton(450,screen,"Quit Game")
     # 创建一个用于储存游戏统计信息的实例
     stats = GameStats(ai_settings)
     # 创建一个飞船
@@ -37,8 +39,11 @@ def run_game():
             pygame.mixer.music.play(-1)
         # 监视键盘和鼠标事件
         gf.check_events(ai_settings, screen, stats,
-                        play_button, ship, bullets, aliens)
-        if stats.game_active:
+                        play_button,quit_button,replay_button, ship, bullets, aliens)       
+        if not stats.game_start:
+            gf.update_screen_menu(ai_settings, screen, stats,
+                              play_button, quit_button)
+        elif stats.game_active:
             ship.update()
         # bullets.update()
         #  删除已经消失的子弹
@@ -53,9 +58,9 @@ def run_game():
         # 让最近绘制的屏幕可见
         # pygame.display.flip()
             gf.update_aliens(ai_settings, ship, screen, stats, aliens, bullets)
-            gf.update_screen(ai_settings, screen, stats, ship,
-                         bullets, aliens, play_button)
+            gf.update_screen(ai_settings, screen, ship,
+                         bullets, aliens)
 
         else:
-            gf.update_screen_menu(ai_settings,screen,stats,play_button)
+            gf.update_screen_over(ai_settings,screen,stats,replay_button)
 run_game()

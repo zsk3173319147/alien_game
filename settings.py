@@ -11,9 +11,10 @@ class Settings():
         self.Screen_caption = 'Alien Invasion'
         self.bg_color = (230, 230, 230)
         self.bg_image = pygame.image.load('resourses\\space.png')
+        self.gameover_image=pygame.image.load('resourses\\gameover.png')
         # 飞船的设置：飞行速度
         #self.ship_speed_factor = 1.5
-        self.ship_limit = 3
+        self.ship_limit = 2
         # 设置子弹的属性: 创建一个宽为3像素、高15像素的深灰色子弹 子弹速度为1
        # self.bullet_speed_factor = 1
         self.bullet_width = 3
