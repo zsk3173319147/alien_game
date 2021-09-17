@@ -6,6 +6,7 @@ from ship import Ship
 import game_functions as gf
 from game_stats import GameStats
 from button import BUtton
+from scoreboard import scoreBoard
 
 
 def run_game():
@@ -19,10 +20,11 @@ def run_game():
     # bg_color = ai_settings.bg_color
     # 创建一个play按钮
     play_button = BUtton(250, screen, "Play")
-    replay_button=BUtton(600,screen,"Play Again ")
-    quit_button=BUtton(450,screen,"Quit Game")
-    # 创建一个用于储存游戏统计信息的实例
+    replay_button = BUtton(600, screen, "Play Again ")
+    quit_button = BUtton(450, screen, "Quit Game")
+    # 创建一个用于储存游戏统计信息的实例 并创建记分牌
     stats = GameStats(ai_settings)
+    sb = scoreBoard(ai_settings, screen, stats)
     # 创建一个飞船
     ship = Ship(ai_settings, screen)
     # 创建一个用于存储子弹的编组
@@ -38,11 +40,11 @@ def run_game():
         if pygame.mixer.music.get_busy() == False:
             pygame.mixer.music.play(-1)
         # 监视键盘和鼠标事件
-        gf.check_events(ai_settings, screen, stats,
-                        play_button,quit_button,replay_button, ship, bullets, aliens)       
+        gf.check_events(ai_settings, screen, stats, sb,
+                        play_button, quit_button, replay_button, ship, bullets, aliens)
         if not stats.game_start:
             gf.update_screen_menu(ai_settings, screen, stats,
-                              play_button, quit_button)
+                                  play_button, quit_button)
         elif stats.game_active:
             ship.update()
         # bullets.update()
@@ -50,17 +52,21 @@ def run_game():
         # for bullet in bullets.copy():
         #     if bullet.rect.bottom <= 0:
         #         bullets.remove(bullet)
-            gf.update_bullets(ai_settings, screen, ship, bullets, aliens)
+            gf.update_bullets(ai_settings, screen, stats,
+                              sb, ship, bullets, aliens)
         # print(len(bullets)) 测试子弹编组bullets中还有几颗子弹
         # 每次循环都重绘屏幕
         # screen.fill(ai_settings.bg_color)
         # ship.blitme()
         # 让最近绘制的屏幕可见
         # pygame.display.flip()
-            gf.update_aliens(ai_settings, ship, screen, stats, aliens, bullets)
-            gf.update_screen(ai_settings, screen, ship,
-                         bullets, aliens)
+            gf.update_aliens(ai_settings, ship, screen,
+                             stats, sb, aliens, bullets)
+            gf.update_screen(ai_settings, screen, sb, ship,
+                             bullets, aliens)
 
         else:
-            gf.update_screen_over(ai_settings,screen,stats,replay_button)
+            gf.update_screen_over(ai_settings, screen, stats, replay_button)
+
+
 run_game()

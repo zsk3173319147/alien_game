@@ -14,7 +14,7 @@ class BUtton():
         self.font = pygame.font.SysFont(None, 48)
         # 创建按钮的rect对象 并使其居中
         self.rect = pygame.Rect(0, 0, self.width, self.height)
-        self.rect.center = (600,ht)
+        self.rect.center = (600, ht)
         # print(self.rect.center)
         self.prep_msg(msg)
 

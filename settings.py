@@ -11,7 +11,7 @@ class Settings():
         self.Screen_caption = 'Alien Invasion'
         self.bg_color = (230, 230, 230)
         self.bg_image = pygame.image.load('resourses\\space.png')
-        self.gameover_image=pygame.image.load('resourses\\gameover.png')
+        self.gameover_image = pygame.image.load('resourses\\gameover.png')
         # 飞船的设置：飞行速度
         #self.ship_speed_factor = 1.5
         self.ship_limit = 2
@@ -20,13 +20,14 @@ class Settings():
         self.bullet_width = 3
         self.bullet_height = 15
         self.bullet_color = 60, 60, 60
+        self.bullets_allowed = 3
         # 外星人的基本设置
         #self.alien_speed_factor = 1
         #self.fleet_drop_speed = 10
         # fleet_direction 为1表示向左移动 为-1表示向左移动
         #self.fleet_direction = 1
         # 以什么样的速度加快游戏节奏
-        self.speedup_scale=1.05
+        self.speedup_scale = 1.05
         self.initilalize_dynamic_settings()
 
     def initilalize_dynamic_settings(self):
@@ -37,9 +38,11 @@ class Settings():
         self.fleet_drop_speed = 10
         # fleet_direction 为1表示向左移动 为-1表示向左移动
         self.fleet_direction = 1
+        self.alien_point = 50
+
     def increase_speed(self):
         """提高速度设置"""
-        self.ship_speed_factor*=self.speedup_scale
-        self.bullet_speed_factor*=self.speedup_scale
-        self.alien_speed_factor*=self.speedup_scale
-        self.fleet_drop_speed*=self.speedup_scale
+        self.ship_speed_factor *= self.speedup_scale
+        self.bullet_speed_factor *= self.speedup_scale
+        self.alien_speed_factor *= self.speedup_scale
+        self.fleet_drop_speed *= self.speedup_scale
